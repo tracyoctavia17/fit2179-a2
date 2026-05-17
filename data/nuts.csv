@@ -1,0 +1,77 @@
+Region,Data item,2020-21,2021-22,2022-23,2023-24
+Australia,Almonds - Production (t),"177,770","201,376","158,153","219,286"
+Australia,Almonds - Farm gate value ($m),760.5,866.1,533.1,870.3
+New South Wales,Almonds - Production (t),"32,121","35,489","28,468","53,837"
+New South Wales,Almonds - Farm gate value ($m),137.4,152.6,96.0,213.7
+Victoria,Almonds - Production (t),"109,002","119,463","83,821","98,505"
+Victoria,Almonds - Farm gate value ($m),466.3,513.9,282.5,390.9
+South Australia,Almonds - Production (t),"35,871","45,862","44,282","65,823"
+South Australia,Almonds - Farm gate value ($m),153.5,197.2,149.3,261.2
+Western Australia,Almonds - Production (t),776,562,"1,582","1,121"
+Western Australia,Almonds - Farm gate value ($m),3.3,2.4,5.3,4.5
+Australia,Chestnuts - Production (t),"1,221","1,339","1,255","1,078"
+Australia,Chestnuts - Farm gate value ($m),9.3,10.1,9.6,8.2
+New South Wales,Chestnuts - Production (t),183,201,188,162
+New South Wales,Chestnuts - Farm gate value ($m),1.4,1.5,1.4,1.2
+Victoria,Chestnuts - Production (t),855,937,879,755
+Victoria,Chestnuts - Farm gate value ($m),6.4,7.1,6.7,5.8
+Queensland,Chestnuts - Production (t),12,13,12,10
+Queensland,Chestnuts - Farm gate value ($m),0.1,0.1,0.1,0.1
+South Australia,Chestnuts - Production (t),61,67,63,54
+South Australia,Chestnuts - Farm gate value ($m),0.5,0.5,0.5,0.4
+Western Australia,Chestnuts - Production (t),49,54,50,43
+Western Australia,Chestnuts - Farm gate value ($m),0.4,0.4,0.4,0.3
+Tasmania,Chestnuts - Production (t),61,67,63,54
+Tasmania,Chestnuts - Farm gate value ($m),0.5,0.5,0.5,0.4
+Australia,Hazelnuts - Production (t),"1,086","1,411","1,450","1,360"
+Australia,Hazelnuts - Farm gate value ($m),4.4,5.2,6.4,5.5
+New South Wales,Hazelnuts - Production (t),368,480,493,462
+New South Wales,Hazelnuts - Farm gate value ($m),1.5,1.8,2.2,1.9
+Victoria,Hazelnuts - Production (t),542,706,725,679
+Victoria,Hazelnuts - Farm gate value ($m),2.2,2.6,3.2,2.7
+South Australia,Hazelnuts - Production (t),23,28,29,28
+South Australia,Hazelnuts - Farm gate value ($m),0.1,0.1,0.1,0.1
+Western Australia,Hazelnuts - Production (t),23,28,29,28
+Western Australia,Hazelnuts - Farm gate value ($m),0.1,0.1,0.1,0.1
+Tasmania,Hazelnuts - Production (t),130,169,174,163
+Tasmania,Hazelnuts - Farm gate value ($m),0.5,0.6,0.8,0.7
+Australia,Macadamias - Production (t),"55,044","56,800","51,896","57,850"
+Australia,Macadamias - Farm gate value ($m),299.0,203.0,104.0,201.9
+New South Wales,Macadamias - Production (t),"23,120","23,856","15,275","18,582"
+New South Wales,Macadamias - Farm gate value ($m),125.6,85.3,30.6,64.9
+Queensland,Macadamias - Production (t),"31,375","32,376","36,621","39,258"
+Queensland,Macadamias - Farm gate value ($m),170.4,115.7,73.4,137.0
+Western Australia,Macadamias - Production (t),549,568,0,10
+Western Australia,Macadamias - Farm gate value ($m),3.0,2.0,0.0,0.0
+Australia,Pecans - Production (t),"4,217","3,170","2,604","1,397"
+Australia,Pecans - Farm gate value ($m),24.1,46.8,24.9,23.1
+New South Wales,Pecans - Production (t),"3,542","2,663","2,188","1,173"
+New South Wales,Pecans - Farm gate value ($m),20.2,39.3,21.0,19.4
+Queensland,Pecans - Production (t),506,380,312,168
+Queensland,Pecans - Farm gate value ($m),3.0,5.6,3.0,2.8
+South Australia,Pecans - Production (t),42,32,26,14
+South Australia,Pecans - Farm gate value ($m),0.2,0.5,0.2,0.2
+Western Australia,Pecans - Production (t),127,95,78,42
+Western Australia,Pecans - Farm gate value ($m),0.7,1.4,0.7,0.7
+Australia,Pistachios - Production (t),"2,200","3,600","1,400","4,450"
+Australia,Pistachios - Farm gate value ($m),24.0,37.5,15.9,48.2
+New South Wales,Pistachios - Production (t),880,"1,440",584,"1,858"
+New South Wales,Pistachios - Farm gate value ($m),9.6,15.0,6.6,20.1
+Victoria,Pistachios - Production (t),770,"1,260",515,"1,635"
+Victoria,Pistachios - Farm gate value ($m),8.4,13.1,5.8,17.7
+South Australia,Pistachios - Production (t),440,720,287,912
+South Australia,Pistachios - Farm gate value ($m),4.8,7.5,3.3,9.9
+Western Australia,Pistachios - Production (t),110,180,14,45
+Western Australia,Pistachios - Farm gate value ($m),1.2,1.9,0.2,0.5
+Australia,Walnuts - Production (t),"13,658","14,341","8,000","12,000"
+Australia,Walnuts - Farm gate value ($m),41.6,49.4,20.3,40.9
+New South Wales,Walnuts - Production (t),"8,877","9,322","5,200","7,800"
+New South Wales,Walnuts - Farm gate value ($m),27.1,32.1,13.2,26.6
+Victoria,Walnuts - Production (t),"1,229","1,291",720,"1,080"
+Victoria,Walnuts - Farm gate value ($m),3.7,4.4,1.8,3.7
+South Australia,Walnuts - Production (t),137,143,80,120
+South Australia,Walnuts - Farm gate value ($m),0.4,0.5,0.2,0.4
+Western Australia,Walnuts - Production (t),410,430,240,360
+Western Australia,Walnuts - Farm gate value ($m),1.2,1.5,0.6,1.2
+Tasmania,Walnuts - Production (t),"3,005","3,155","1,760","2,640"
+Tasmania,Walnuts - Farm gate value ($m),9.2,10.9,4.5,9.0
