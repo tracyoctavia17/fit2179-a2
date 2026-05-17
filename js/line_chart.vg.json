@@ -1,0 +1,38 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "data/gross_value.csv",
+    "format": {"type": "csv"}
+  },
+"transform": [
+    {"filter": "datum.Value != null && datum.Value != ''"},
+    {"calculate": "toNumber(datum.Value)", "as": "Value"}
+],
+  "mark": {
+    "type": "line",
+    "point": false
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year"
+    },
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Farm gate value ($ million)"
+    },
+    "color": {
+      "field": "Commodity",
+      "type": "nominal"
+    },
+    "tooltip": [
+      {"field": "Commodity", "type": "nominal"},
+      {"field": "Year", "type": "ordinal"},
+      {"field": "Value", "type": "quantitative"}
+    ]
+  }
+}

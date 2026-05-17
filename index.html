@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Australia Grows</title>
+
+  <link rel="stylesheet" href="css/layout.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title">What Australia Grows</h1>
+      <p class="hero-subtitle">Inside the Horticulture Industry</p>
+      <p class="hero-description">
+        Exploring production and farm gate value across Australia, 1979–80 to 2023–24
+      </p>
+    </div>
+
+    <div class="hero-right">
+      <div class="story-box">
+        <img src="images/photo1.png" alt="Horticulture produce" class="hero-image">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="chart-section">
+      <h2>40+ Years of Horticulture Growth</h2>
+      <p class="chart-note">
+        Farm gate value by commodity group, 1979–80 to 2023–24.
+      </p>
+
+      <div id="line-chart"></div>
+    </section>
+  </main>
+
+  <script>
+    const spec2 = "js/line_chart.vg.json";
+
+    vegaEmbed("#line-chart", spec2, {
+      actions: false
+    })
+    .then(function(result) {
+      console.log("Line chart loaded successfully");
+    })
+    .catch(function(error) {
+      console.error("Vega chart error:", error);
+    });
+  </script>
+
+</body>
+</html>
