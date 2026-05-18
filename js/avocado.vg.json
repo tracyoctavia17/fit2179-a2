@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "The avocado boom – Australian avocado production in tonnes from 2020-21 to 2023-24",
+  "width": "container",
+  "height": 280,
+  "data": {
+    "values": [
+      { "year": "2020–21", "year_num": 1, "production": 77981  },
+      { "year": "2021–22", "year_num": 2, "production": 122197 },
+      { "year": "2022–23", "year_num": 3, "production": 115385 },
+      { "year": "2023–24", "year_num": 4, "production": 150913 }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "fillOpacity": 0.18,
+        "fill": "#4a8c3f",
+        "stroke": "transparent"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": {
+            "title": null,
+            "labelFontSize": 12,
+            "labelAngle": 0,
+            "grid": false,
+            "bandPosition": 0.5,
+            "tickBand": "center"
+          }
+        },
+        "y": {
+          "field": "production",
+          "type": "quantitative",
+          "scale": { "zero": true },
+          "axis": {
+            "title": "Production (tonnes)",
+            "titleFontSize": 11,
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "labelFontSize": 10,
+            "labelExpr": "datum.value === 0 ? '0' : format(datum.value, ',')"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 3,
+        "color": "#2d5a2d",
+        "point": {
+          "filled": true,
+          "fill": "#2d5a2d",
+          "size": 80
+        }
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "production", "type": "quantitative" },
+        "tooltip": [
+          { "field": "year",       "title": "Year" },
+          { "field": "production", "title": "Production (t)", "format": "," }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#1c3d1f"
+      },
+      "encoding": {
+        "x": { "field": "year",       "type": "ordinal" },
+        "y": { "field": "production", "type": "quantitative" },
+        "text": {
+          "field": "production",
+          "type": "quantitative",
+          "format": ","
+        }
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.year_num == 4" }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "dx": -8,
+        "dy": -20,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#4a8c3f"
+      },
+      "encoding": {
+        "x": { "field": "year",       "type": "ordinal" },
+        "y": { "field": "production", "type": "quantitative" },
+        "text": { "value": "↑ +93% over 4 years!" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": "transparent" }
+  }
+}

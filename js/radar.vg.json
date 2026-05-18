@@ -1,0 +1,186 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Radar / spider chart showing crop category breakdown per state.",
+  "data": {
+    "values": [
+      { "state": "Victoria",          "category": "Fruit",          "r": 1.000, "catIndex": 0, "display": "1813" },
+      { "state": "Victoria",          "category": "Vegetables",     "r": 1.000, "catIndex": 1, "display": "1669" },
+      { "state": "Victoria",          "category": "Nuts",           "r": 1.000, "catIndex": 2, "display": "421"  },
+      { "state": "Victoria",          "category": "Wine Grapes",    "r": 0.344, "catIndex": 3, "display": "178"  },
+      { "state": "Victoria",          "category": "Nursery",        "r": 1.000, "catIndex": 4, "display": "909"  },
+      { "state": "Victoria",          "category": "Fruit",          "r": 1.000, "catIndex": 5, "display": "1813" },
+      { "state": "New South Wales",   "category": "Fruit",          "r": 0.796, "catIndex": 0, "display": "1446" },
+      { "state": "New South Wales",   "category": "Vegetables",     "r": 0.356, "catIndex": 1, "display": "596"  },
+      { "state": "New South Wales",   "category": "Nuts",           "r": 0.827, "catIndex": 2, "display": "348"  },
+      { "state": "New South Wales",   "category": "Wine Grapes",    "r": 0.335, "catIndex": 3, "display": "174"  },
+      { "state": "New South Wales",   "category": "Nursery",        "r": 0.012, "catIndex": 4, "display": "920"  },
+      { "state": "New South Wales",   "category": "Fruit",          "r": 0.796, "catIndex": 5, "display": "1446" },
+      { "state": "Queensland",        "category": "Fruit",          "r": 1.000, "catIndex": 0, "display": "2024" },
+      { "state": "Queensland",        "category": "Vegetables",     "r": 0.786, "catIndex": 1, "display": "1313" },
+      { "state": "Queensland",        "category": "Nuts",           "r": 0.332, "catIndex": 2, "display": "140"  },
+      { "state": "Queensland",        "category": "Wine Grapes",    "r": 0.003, "catIndex": 3, "display": "1.4"  },
+      { "state": "Queensland",        "category": "Nursery",        "r": 1.059, "catIndex": 4, "display": "964"  },
+      { "state": "Queensland",        "category": "Fruit",          "r": 1.000, "catIndex": 5, "display": "2024" },
+      { "state": "South Australia",   "category": "Fruit",          "r": 0.239, "catIndex": 0, "display": "433"  },
+      { "state": "South Australia",   "category": "Vegetables",     "r": 0.560, "catIndex": 1, "display": "935"  },
+      { "state": "South Australia",   "category": "Nuts",           "r": 0.646, "catIndex": 2, "display": "272"  },
+      { "state": "South Australia",   "category": "Wine Grapes",    "r": 1.000, "catIndex": 3, "display": "518"  },
+      { "state": "South Australia",   "category": "Nursery",        "r": 0.112, "catIndex": 4, "display": "102"  },
+      { "state": "South Australia",   "category": "Fruit",          "r": 0.239, "catIndex": 5, "display": "433"  },
+      { "state": "Western Australia", "category": "Fruit",          "r": 0.331, "catIndex": 0, "display": "600"  },
+      { "state": "Western Australia", "category": "Vegetables",     "r": 0.254, "catIndex": 1, "display": "424"  },
+      { "state": "Western Australia", "category": "Nuts",           "r": 0.017, "catIndex": 2, "display": "7"    },
+      { "state": "Western Australia", "category": "Wine Grapes",    "r": 0.139, "catIndex": 3, "display": "72"   },
+      { "state": "Western Australia", "category": "Nursery",        "r": 0.314, "catIndex": 4, "display": "286"  },
+      { "state": "Western Australia", "category": "Fruit",          "r": 0.331, "catIndex": 5, "display": "600"  },
+      { "state": "Tasmania",          "category": "Fruit",          "r": 0.165, "catIndex": 0, "display": "300"  },
+      { "state": "Tasmania",          "category": "Vegetables",     "r": 0.377, "catIndex": 1, "display": "630"  },
+      { "state": "Tasmania",          "category": "Nuts",           "r": 0.024, "catIndex": 2, "display": "10"   },
+      { "state": "Tasmania",          "category": "Wine Grapes",    "r": 0.118, "catIndex": 3, "display": "61"   },
+      { "state": "Tasmania",          "category": "Nursery",        "r": 0.026, "catIndex": 4, "display": "24"   },
+      { "state": "Tasmania",          "category": "Fruit",          "r": 0.165, "catIndex": 5, "display": "300"  }
+    ]
+  },
+  "transform": [
+    { "calculate": "datum.catIndex * 2 * PI / 5", "as": "angle" },
+    { "calculate": "datum.r * sin(datum.angle)",  "as": "x"     },
+    { "calculate": "datum.r * cos(datum.angle)",  "as": "y"     }
+  ],
+  "facet": {
+    "field": "state",
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Playfair Display, serif",
+      "labelColor": "#1c3d1f",
+      "labelFontWeight": "bold"
+    }
+  },
+  "columns": 3,
+  "spec": {
+    "width":  160,
+    "height": 160,
+    "resolve": { "scale": { "x": "shared", "y": "shared" } },
+    "layer": [
+      {
+        "data": {
+          "values": [
+            { "gx": 0.000, "gy": 0.330, "ring": 0.33, "order": 0 },
+            { "gx": 0.314, "gy": 0.102, "ring": 0.33, "order": 1 },
+            { "gx": 0.194, "gy":-0.267, "ring": 0.33, "order": 2 },
+            { "gx":-0.194, "gy":-0.267, "ring": 0.33, "order": 3 },
+            { "gx":-0.314, "gy": 0.102, "ring": 0.33, "order": 4 },
+            { "gx": 0.000, "gy": 0.330, "ring": 0.33, "order": 5 },
+            { "gx": 0.000, "gy": 0.670, "ring": 0.67, "order": 0 },
+            { "gx": 0.637, "gy": 0.207, "ring": 0.67, "order": 1 },
+            { "gx": 0.394, "gy":-0.542, "ring": 0.67, "order": 2 },
+            { "gx":-0.394, "gy":-0.542, "ring": 0.67, "order": 3 },
+            { "gx":-0.637, "gy": 0.207, "ring": 0.67, "order": 4 },
+            { "gx": 0.000, "gy": 0.670, "ring": 0.67, "order": 5 },
+            { "gx": 0.000, "gy": 1.000, "ring": 1.00, "order": 0 },
+            { "gx": 0.951, "gy": 0.309, "ring": 1.00, "order": 1 },
+            { "gx": 0.588, "gy":-0.809, "ring": 1.00, "order": 2 },
+            { "gx":-0.588, "gy":-0.809, "ring": 1.00, "order": 3 },
+            { "gx":-0.951, "gy": 0.309, "ring": 1.00, "order": 4 },
+            { "gx": 0.000, "gy": 1.000, "ring": 1.00, "order": 5 }
+          ]
+        },
+        "mark": { "type": "line", "strokeWidth": 0.7, "color": "#cccccc" },
+        "encoding": {
+          "x":      { "field": "gx",    "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "y":      { "field": "gy",    "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "order":  { "field": "order", "type": "quantitative" },
+          "detail": { "field": "ring",  "type": "quantitative" }
+        }
+      },
+      {
+        "data": {
+          "values": [
+            { "x1": 0, "y1": 0, "x2": 0,     "y2": 1.0   },
+            { "x1": 0, "y1": 0, "x2": 0.951, "y2": 0.309 },
+            { "x1": 0, "y1": 0, "x2": 0.588, "y2":-0.809 },
+            { "x1": 0, "y1": 0, "x2":-0.588, "y2":-0.809 },
+            { "x1": 0, "y1": 0, "x2":-0.951, "y2": 0.309 }
+          ]
+        },
+        "mark": { "type": "rule", "color": "#cccccc", "strokeWidth": 0.5 },
+        "encoding": {
+          "x":  { "field": "x1", "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "y":  { "field": "y1", "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "x2": { "field": "x2" },
+          "y2": { "field": "y2" }
+        }
+      },
+      {
+        "params": [{
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": ["state"],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }],
+        "mark": {
+          "type": "line",
+          "strokeWidth": 1.8,
+          "stroke": "#2d5a2d",
+          "fill": "#4a8c3f",
+          "fillOpacity": 0.35
+        },
+        "encoding": {
+          "x":     { "field": "x", "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "y":     { "field": "y", "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "order": { "field": "catIndex", "type": "quantitative" },
+          "opacity": {
+            "condition": { "param": "hover", "empty": true, "value": 1 },
+            "value": 0.15
+          },
+          "tooltip": [
+            { "field": "category", "title": "Category" },
+            { "field": "display",  "title": "Value ($m)" }
+          ]
+        }
+      },
+      {
+        "transform": [ { "filter": "datum.catIndex < 5" } ],
+        "mark": { "type": "point", "filled": true, "size": 35, "color": "#2d5a2d" },
+        "encoding": {
+          "x": { "field": "x", "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "y": { "field": "y", "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "opacity": {
+            "condition": { "param": "hover", "empty": true, "value": 1 },
+            "value": 0.15
+          },
+          "tooltip": [
+            { "field": "category", "title": "Category" },
+            { "field": "display",  "title": "Value ($m)" }
+          ]
+        }
+      },
+      {
+        "data": {
+          "values": [
+            { "lx":  0.000, "ly": 1.25, "label": "Fruit"       },
+            { "lx":  1.200, "ly": 0.37, "label": "Vegetables"  },
+            { "lx":  0.750, "ly":-1.00, "label": "Nuts"        },
+            { "lx": -0.750, "ly":-1.00, "label": "Wine Grapes" },
+            { "lx": -1.200, "ly": 0.37, "label": "Nursery"     }
+          ]
+        },
+        "mark": { "type": "text", "fontSize": 9, "fontWeight": "bold", "color": "#3a4a3a", "align": "center" },
+        "encoding": {
+          "x":    { "field": "lx",    "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "y":    { "field": "ly",    "type": "quantitative", "scale": { "domain": [-1.35, 1.35] }, "axis": null },
+          "text": { "field": "label", "type": "nominal" },
+          "opacity": {
+            "condition": { "param": "hover", "empty": true, "value": 1 },
+            "value": 0.15
+          }
+        }
+      }
+    ]
+  },
+  "config": {
+    "view": { "stroke": "transparent" }
+  }
+}

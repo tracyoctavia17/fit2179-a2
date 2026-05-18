@@ -3,59 +3,442 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What Australia Grows</title>
-
+  <title>What Australia Grows – Inside the Horticulture Industry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <link rel="stylesheet" href="css/layout.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
 </head>
-
 <body>
 
-  <header class="hero">
-    <div class="hero-left">
-      <h1 class="hero-title">What Australia Grows</h1>
-      <p class="hero-subtitle">Inside the Horticulture Industry</p>
-      <p class="hero-description">
-        Exploring production and farm gate value across Australia, 1979–80 to 2023–24
-      </p>
+<!-- ============ HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <p class="header-kicker">Australian Horticulture · 1979–80 to 2023–24</p>
+      <h1 class="main-title">What Australia Grows</h1>
+      <p class="main-subtitle">Inside the Horticulture Industry</p>
     </div>
+    <div class="header-img-wrap">
+      <img src="images/plants.png" alt="Seedling" class="header-img">
+    </div>
+  </div>
+</header>
 
-    <div class="hero-right">
-      <div class="story-box">
-        <img src="images/photo1.png" alt="Horticulture produce" class="hero-image">
+<main class="container">
+
+  <!-- ========================== SECTION 1: AT A GLANCE -->
+  <section class="section section--glance">
+    <div class="section-header">
+      <span class="section-num">1</span>
+      <h2>Horticulture at a Glance <span class="year-tag">(2023–24)</span></h2>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card stat-card--highlight" onclick="scrollToSection('growth')">
+        <div class="stat-label">Total Horticulture Value</div>
+        <img src="images/image1.png" alt="Seedling">
+        <div class="stat-value">$17.0<span class="stat-unit">B</span></div>
+        <div class="stat-note">Australia's horticulture industry in 2023–24</div>
+      </div>
+      <div class="stat-card" onclick="scrollToSection('map')">
+        <div class="stat-label">Top State</div>
+        <img src="images/victoria.png" alt="Victoria">
+        <div class="stat-value stat-value--state">Victoria</div>
+        <div class="stat-note">Leads with $6.9B in farm gate value</div>
+      </div>
+      <div class="stat-card" onclick="scrollToSection('avocado')">
+        <div class="stat-label">Fastest Growing Crop <small>(2020–21 to 2023–24)</small></div>
+        <img src="images/avocado.png" alt="Avocado">
+        <div class="stat-value stat-value--avocado">Avocados +93%</div>
+        <div class="stat-note">Growth in production</div>
+      </div>
+      <div class="stat-card" onclick="scrollToSection('treemap')">
+        <div class="stat-label">Top Category</div>
+        <img src="images/fruits.png" alt="Fruit">
+        <div class="stat-value stat-value--fruit">Fruit</div>
+        <div class="stat-note">Contributes $8.0B (47%) of total value</div>
       </div>
     </div>
-  </header>
+<div class="chart-caption">
+  Over the past four decades, Australian horticulture has grown into a 
+  <strong>$17.0 billion industry</strong>, shaped by regional specialisation, 
+  led by <strong>fruit</strong>, anchored by <strong>Victoria</strong>, 
+  and increasingly influenced by emerging crops such as 
+  <strong>avocados</strong>. This story explores where that growth happened, 
+  which states dominate, and how Australia’s crop landscape is changing.
+</div>
+  </section>
 
-  <main>
-    <section class="chart-section">
-      <h2>40+ Years of Horticulture Growth</h2>
-      <p class="chart-note">
-        Farm gate value by commodity group, 1979–80 to 2023–24.
+  <!-- ========================== SECTION 2: 40+ YEARS -->
+  <section class="section section--growth" id="growth">
+    <div class="section-header">
+      <span class="section-num">2</span>
+      <h2>40+ Years of Growth <span class="year-tag">(Total farm gate value, $million)</span></h2>
+    </div>
+    <div class="two-col-layout">
+      <div class="insight-col">
+        <div class="insight-box">
+          <h3>From niche sector to $17 billion industry.</h3>
+          <p>Over four decades, Australian horticulture has transformed from a niche domestic sector into a <strong>$17 billion industry</strong>. Growth accelerated after the 1990s as exports expanded, consumer demand diversified, and high-value crops such as fruit, nuts, and vegetables scaled nationally.</p>
+          <p>After temporary disruptions around 2019–20 — driven by drought, bushfires, and pandemic pressures — the industry rebounded strongly by 2023–24, reaching its highest-ever recorded value.</p>
+        </div>
+      </div>
+      <div class="chart-col chart-col--wide">
+        <div class="chart-container" id="line-chart"></div>
+      </div>
+    </div>
+  </section>
+
+<!-- ========================== SECTION 3: WHAT CHANGED OVER TIME -->
+<section class="section section--category-change" id="category-change">
+  <div class="section-header">
+    <span class="section-num">3</span>
+    <h2>What Changed Over Time? <span class="year-tag">(2020–21 to 2023–24)</span></h2>
+  </div>
+
+  <p class="section-intro">
+    Category breakdown of Australia's horticulture farm gate value.
+  </p>
+
+  <div class="chart-container chart-container--full" id="category-change-chart"></div>
+
+  <div class="insight-col">
+    <div class="insight-box">
+      <h3>Growth came from different parts of the industry.</h3>
+      <p>
+        Fruit remained Australia's largest horticulture category, while vegetables continued
+        to form a major part of total value. Nuts, wine grapes and nursery crops show how
+        smaller categories can still shape the industry's overall mix.
+      </p>
+      <p>
+        This section bridges the long-term growth story with the state-level maps that follow:
+        the industry did not just grow larger, its category mix also changed.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- ========================== SECTION 4: WHERE? -->
+<section class="section section--map" id="map">
+  <div class="section-header">
+    <span class="section-num">4</span>
+    <h2>Where is Horticulture Most Valuable? <span class="year-tag">(2023–24)</span></h2>
+  </div>
+
+  <p class="section-intro">
+    Farm gate value by state ($million). Click on a state to see its crop breakdown.
+  </p>
+
+  <div class="chart-container chart-container--full" id="map-chart"></div>
+
+  <div class="insight-col">
+    <div class="insight-box">
+      <h3>Value clusters in the east and south.</h3>
+      <p>
+        Horticultural value is concentrated along Australia's eastern and southern regions.
+        <strong>Victoria leads nationally with $6.9B</strong>, followed by Queensland and
+        New South Wales.
+      </p>
+      <p>
+        Each state reveals a distinct crop identity shaped by climate, geography and market
+        access, from Queensland's tropical fruits to South Australia's wine grapes.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================== SECTION 5 + 6: WHO'S RISING + WHO GAINED -->
+<section class="section section--rankings">
+  <div class="two-col-layout">
+
+    <div>
+      <div class="section-header">
+        <span class="section-num">5</span>
+        <h2>Who's Rising? <span class="year-tag">State Rankings Over Time</span></h2>
+      </div>
+
+      <p class="section-intro">By total farm gate value</p>
+
+      <div class="chart-container" id="bump-chart"></div>
+
+      <div class="insight-col">
+        <div class="insight-box">
+          <h3>Queensland moves into second place.</h3>
+          <p>
+            Victoria has held the top spot throughout, but the story below it is changing.
+            <strong>Queensland climbed past New South Wales</strong> to become Australia's
+            second-largest horticulture state by 2023–24.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-header">
+        <span class="section-num">6</span>
+        <h2>Who Gained the Most? <span class="year-tag">2020–21 vs 2023–24</span></h2>
+      </div>
+
+      <p class="section-intro">Change in farm gate value ($million)</p>
+
+      <div class="chart-container" id="dumbbell-chart"></div>
+
+      <div class="insight-col">
+        <div class="insight-box">
+          <h3>Recent growth is uneven.</h3>
+          <p>
+            <strong>Queensland recorded the strongest absolute growth</strong> over four years,
+            reinforcing its rise as a horticulture powerhouse. Victoria also grew substantially,
+            while smaller states such as Tasmania showed steadier gains despite their size.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ========================== SECTION 7: CROP IDENTITY -->
+<section class="section section--radar">
+  <div class="section-header">
+    <span class="section-num">7</span>
+    <h2>Each State's Crop Identity <span class="year-tag">(2023–24)</span></h2>
+  </div>
+
+  <p class="section-intro">
+    Farm gate value by category ($million), each axis normalised to the national maximum.
+  </p>
+
+  <div class="two-col-layout insight-left">
+
+    <div class="insight-col">
+      <div class="insight-box">
+        <h3>Every state grows differently.</h3>
+        <p>
+          While <strong>Victoria leads across nearly every major crop category</strong>,
+          other states reveal specialised strengths. <strong>Queensland excels in fruit and
+          nursery production</strong>, <strong>South Australia is defined by wine grapes</strong>,
+          and <strong>New South Wales shows a balanced mix</strong> across fruit, vegetables,
+          and nuts.
+        </p>
+        <p>
+          Together, these regional strengths create a complementary national horticulture
+          profile. No two states are alike.
+        </p>
+      </div>
+    </div>
+
+    <div class="chart-col chart-col--wide">
+      <div class="chart-container chart-container--full" id="radar-chart"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================== SECTION 8: BUBBLE MAP -->
+<section class="section section--bubble">
+  <div class="section-header">
+    <span class="section-num">8</span>
+    <h2>What Grows Where? <span class="year-tag">(2023–24 Production)</span></h2>
+  </div>
+
+  <p class="section-intro">
+    Bubble size = production in tonnes. Click a crop in the legend to filter.
+  </p>
+
+  <!-- Chart -->
+  <div class="chart-container chart-container--full" id="bubble-map"></div>
+
+  <!-- Full-width insight -->
+  <div class="insight-col">
+    <div class="insight-box">
+
+      <h3>Geography shapes what we grow.</h3>
+
+      <p>
+        Production hubs closely reflect climate, water access, and soil conditions.
+        <strong>Victoria’s Goulburn Valley</strong> is a major centre for apples
+        and vegetables, while <strong>South Australia’s Riverland</strong>
+        anchors almond and wine grape production.
       </p>
 
-      <div id="line-chart"></div>
-    </section>
-  </main>
+      <p>
+        Further north, <strong>Queensland’s tropical growing regions</strong>,
+        from the Atherton Tablelands to Bundaberg, play a central role in
+        Australia’s avocado expansion. Click a crop to explore where each
+        production cluster emerges.
+      </p>
 
-  <script>
-    const spec2 = "js/line_chart.vg.json";
+    </div>
+  </div>
 
-    vegaEmbed("#line-chart", spec2, {
-      actions: false
-    })
-    .then(function(result) {
-      console.log("Line chart loaded successfully");
-    })
-    .catch(function(error) {
-      console.error("Vega chart error:", error);
-    });
-  </script>
+</section>
+
+  <!-- ========================== SECTION 9: AVOCADO BOOM -->
+  <section class="section section--avocado" id="avocado">
+    <div class="section-header">
+      <span class="section-num">9</span>
+      <h2>The Avocado Boom <span class="year-tag">(Australia production, tonnes)</span></h2>
+    </div>
+    <div class="section-body two-col-layout">
+      <div class="chart-col chart-col--wide">
+        <div class="chart-container" id="avocado-chart"></div>
+      </div>
+      <div class="insight-col">
+        <div class="insight-box">
+          <h3>Avocado production nearly doubled in 4 years!</h3>
+          <p>From <strong>77,981 tonnes</strong> in 2020–21 to <strong>150,913 tonnes</strong> in 2023–24, avocados are Australia's fastest-growing major crop 
+             fuelled by strong domestic demand and expanding plantings in Queensland.</p>
+          <p>Once a niche imported fruit, avocados are now a mainstream staple, and Australian growers are scaling up to meet the appetite.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ========================== SECTION 10: WHAT DOMINATES? -->
+<section class="section section--treemap" id="treemap">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2>What Dominates? <span class="year-tag">(Farm gate value, 2023–24)</span></h2>
+  </div>
+
+  <p class="section-intro">
+    Box size = farm gate value ($million).
+  </p>
+
+  <div class="two-col-layout insight-left">
+
+    <!-- Insight -->
+    <div class="insight-col">
+      <div class="insight-box">
+        <h3>Fruit accounts for nearly half of all value.</h3>
+
+        <p>
+          <strong>Fruit dominates</strong> with <strong>$8.0 billion</strong>,
+          contributing almost <strong>47%</strong> of Australia’s entire
+          horticulture industry.
+        </p>
+
+        <p>
+          No single crop drives this dominance. Instead, it reflects a broad mix
+          of apples, avocados, cherries, citrus, and other fruit crops grown
+          across multiple states.
+        </p>
+
+        <p>
+          Vegetables follow at <strong>$4.4 billion</strong>, while
+          <strong>nuts and wine grapes</strong> generate smaller volumes but
+          deliver exceptionally high value per tonne.
+        </p>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-col chart-col--wide">
+      <div class="chart-container chart-container--full" id="treemap-chart"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================== SECTION 11: SUMMARY -->
+<section class="section section--summary">
+
+  <div class="section-header">
+    <h2>What Did We Learn?</h2>
+  </div>
+
+  <div class="insight-box">
+
+    <h3>Australia’s horticulture story is one of growth, diversity, and regional specialisation.</h3>
+
+    <p>
+      Over the past four decades, the industry has grown into a
+      <strong>$17 billion sector</strong>, supported by rising domestic demand,
+      export expansion, and increasingly specialised production systems.
+    </p>
+
+    <p>
+      <strong>Victoria remains the national leader</strong>, but Queensland’s rapid
+      rise signals shifting production momentum. Across the country, each state
+      contributes its own agricultural identity, from tropical fruit in the north
+      to wine grapes, almonds, and cool-climate crops in the south.
+    </p>
+
+    <p>
+      Looking ahead, fast-growing crops such as
+      <strong>avocados</strong>, alongside high-value categories like
+      <strong>fruit, nuts, and wine grapes</strong>, suggest that Australian
+      horticulture is not only growing bigger, but becoming more diverse,
+      more valuable, and more regionally distinct.
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- ============================ FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Data Sources</h4>
+      <ul>
+        <li>ABARES – Horticulture Statistics</li>
+        <li><a href="https://www.agriculture.gov.au/abares" target="_blank">www.agriculture.gov.au/abares</a></li>
+        <li>ABS – Australian Agriculture: Horticulture</li>
+        <li><a href="https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/2023-24#horticulture-crops" target="_blank">abs.gov.au/horticulture</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-col--author">
+      <h4>Authorship</h4>
+      <p>Tracy Octavia (33332649)</p>
+      <p class="footer-date">19 May 2026</p>
+    </div>
+  </div>
+  </div>
+</footer>
+
+<!-- ============================ SCRIPTS -->
+<script>
+  const vegaConfig = {
+    background: "transparent",
+    font: "Source Sans 3, sans-serif",
+    axis: {
+      labelFont: "Source Sans 3, sans-serif",
+      titleFont: "Source Sans 3, sans-serif",
+      titleFontSize: 12,
+      labelFontSize: 11
+    },
+    legend: {
+      labelFont: "Source Sans 3, sans-serif",
+      titleFont: "Source Sans 3, sans-serif"
+    },
+    title: {
+      font: "Playfair Display, serif",
+      fontSize: 14
+    }
+  };
+
+  const embedOpts = { config: vegaConfig, actions: false, renderer: "svg" };
+
+  vegaEmbed('#line-chart',     'js/line_chart.vg.json',  embedOpts).catch(console.error);
+  vegaEmbed('#map-chart',      'js/map_section.vg.json', embedOpts).catch(console.error);
+  vegaEmbed('#bump-chart',     'js/bump_chart.vg.json',  embedOpts).catch(console.error);
+  vegaEmbed('#dumbbell-chart', 'js/dumbbell.vg.json',    embedOpts).catch(console.error);
+  vegaEmbed('#radar-chart',    'js/radar.vg.json',       embedOpts).catch(console.error);
+  vegaEmbed('#bubble-map',     'js/bubble_map.vg.json',  embedOpts).catch(console.error);
+  vegaEmbed('#avocado-chart',  'js/avocado.vg.json',     embedOpts).catch(console.error);
+  vegaEmbed('#treemap-chart',  'js/treemap.vg.json',     embedOpts).catch(console.error);
+    vegaEmbed('#category-change-chart', 'js/category_change.vg.json', embedOpts).catch(console.error);
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
 
 </body>
 </html>

@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Treemap showing farm gate value by category and crop (2023-24).",
+  "width": 900,
+  "height": 450,
+  "padding": 5,
+  "autosize": "fit",
+  "data": [
+    {
+      "name": "tree",
+      "values": [
+        { "id": "root",          "parent": "",           "name": "Horticulture", "category": null,          "value": null },
+        { "id": "Fruit",         "parent": "root",       "name": "Fruit",        "category": "Fruit",       "value": null },
+        { "id": "Vegetables",    "parent": "root",       "name": "Vegetables",   "category": "Vegetables",  "value": null },
+        { "id": "Nuts",          "parent": "root",       "name": "Nuts",         "category": "Nuts",        "value": null },
+        { "id": "Wine grapes",   "parent": "root",       "name": "Wine grapes",  "category": "Wine grapes", "value": null },
+        { "id": "Nursery",       "parent": "root",       "name": "Nursery",      "category": "Nursery",     "value": null },
+        { "id": "Apples",        "parent": "Fruit",      "name": "Apples",       "category": "Fruit",       "value": 680  },
+        { "id": "Avocados",      "parent": "Fruit",      "name": "Avocados",     "category": "Fruit",       "value": 500  },
+        { "id": "Strawberries",  "parent": "Fruit",      "name": "Strawberries", "category": "Fruit",       "value": 420  },
+        { "id": "Cherries",      "parent": "Fruit",      "name": "Cherries",     "category": "Fruit",       "value": 320  },
+        { "id": "Oranges",       "parent": "Fruit",      "name": "Oranges",      "category": "Fruit",       "value": 280  },
+        { "id": "Other fruit",   "parent": "Fruit",      "name": "Other fruit",  "category": "Fruit",       "value": 5816 },
+        { "id": "Tomatoes",      "parent": "Vegetables", "name": "Tomatoes",     "category": "Vegetables",  "value": 420  },
+        { "id": "Lettuce",       "parent": "Vegetables", "name": "Lettuce",      "category": "Vegetables",  "value": 180  },
+        { "id": "Other veg",     "parent": "Vegetables", "name": "Other veg",    "category": "Vegetables",  "value": 3793 },
+        { "id": "Almonds",       "parent": "Nuts",       "name": "Almonds",      "category": "Nuts",        "value": 870  },
+        { "id": "Macadamias",    "parent": "Nuts",       "name": "Macadamias",   "category": "Nuts",        "value": 280  },
+        { "id": "Hazelnuts",     "parent": "Nuts",       "name": "Hazelnuts",    "category": "Nuts",        "value": 60   },
+        { "id": "Other nuts",    "parent": "Nuts",       "name": "Other nuts",   "category": "Nuts",        "value": 88   },
+        { "id": "Wine grapes c", "parent": "Wine grapes","name": "Wine grapes",  "category": "Wine grapes", "value": 1005 },
+        { "id": "Nursery plants","parent": "Nursery",    "name": "Nursery",      "category": "Nursery",     "value": 1823 }
+      ],
+      "transform": [
+        { "type": "stratify", "key": "id", "parentKey": "parent" },
+        {
+          "type": "treemap",
+          "field": "value",
+          "sort": { "field": "value", "order": "descending" },
+          "round": true,
+          "method": "squarify",
+          "ratio": 1.618,
+          "size": [{ "signal": "width" }, { "signal": "height" }],
+          "as": ["x0", "y0", "x1", "y1", "depth", "children"]
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [ { "type": "filter", "expr": "datum.depth === 2" } ]
+    },
+    {
+      "name": "categories",
+      "source": "tree",
+      "transform": [ { "type": "filter", "expr": "datum.depth === 1" } ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": ["Fruit", "Vegetables", "Nuts", "Wine grapes", "Nursery"],
+      "range": ["#c0392b", "#27ae60", "#c8a030", "#8e44ad", "#2e7a6a"]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Category",
+      "orient": "bottom",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "columns": 5
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": { "data": "leaves" },
+      "encode": {
+        "enter": {
+          "x":     { "field": "x0" },
+          "y":     { "field": "y0" },
+          "x2":    { "field": "x1" },
+          "y2":    { "field": "y1" },
+          "fill":  { "scale": "color", "field": "category" },
+          "stroke":      { "value": "white" },
+          "strokeWidth": { "value": 1.5 },
+          "opacity":     { "value": 0.88 },
+          "tooltip": {
+            "signal": "{'Crop': datum.name, 'Category': datum.category, 'Farm gate value ($m)': datum.value}"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": { "data": "categories" },
+      "encode": {
+        "enter": {
+          "x":     { "field": "x0" },
+          "y":     { "field": "y0" },
+          "x2":    { "field": "x1" },
+          "y2":    { "field": "y1" },
+          "fill":  { "value": "transparent" },
+          "stroke":      { "value": "white" },
+          "strokeWidth": { "value": 3 }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "leaves" },
+      "encode": {
+        "enter": {
+          "align":    { "value": "center" },
+          "baseline": { "value": "middle" },
+          "fill":     { "value": "white" },
+          "fontSize": { "value": 11 },
+          "fontWeight": { "value": "bold" },
+          "text": { "field": "name" },
+          "x": { "signal": "(datum.x0 + datum.x1) / 2" },
+          "y": { "signal": "(datum.y0 + datum.y1) / 2" },
+          "opacity": {
+            "signal": "(datum.x1 - datum.x0) > 55 && (datum.y1 - datum.y0) > 20 ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "categories" },
+      "encode": {
+        "enter": {
+          "align":    { "value": "left" },
+          "baseline": { "value": "top" },
+          "fill":     { "value": "white" },
+          "fontSize": { "value": 12 },
+          "fontWeight": { "value": "bold" },
+          "text": { "field": "name" },
+          "x": { "signal": "datum.x0 + 5" },
+          "y": { "signal": "datum.y0 + 5" },
+          "opacity": {
+            "signal": "(datum.x1 - datum.x0) > 40 ? 1 : 0"
+          }
+        }
+      }
+    }
+  ]
+}

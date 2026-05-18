@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart showing state rankings by farm gate value from 2020-21 to 2023-24",
+  "width": "container",
+  "height": 320,
+  "data": {
+    "values": [
+      { "year": "2020–21", "state": "Victoria",          "rank": 1, "value": 5612 },
+      { "year": "2020–21", "state": "New South Wales",   "rank": 2, "value": 1044 },
+      { "year": "2020–21", "state": "Queensland",        "rank": 3, "value": 1606 },
+      { "year": "2020–21", "state": "South Australia",   "rank": 4, "value": 421  },
+      { "year": "2020–21", "state": "Western Australia", "rank": 5, "value": 415  },
+      { "year": "2020–21", "state": "Tasmania",          "rank": 6, "value": 122  },
+      { "year": "2021–22", "state": "Victoria",          "rank": 1, "value": 5980 },
+      { "year": "2021–22", "state": "New South Wales",   "rank": 2, "value": 1200 },
+      { "year": "2021–22", "state": "Queensland",        "rank": 3, "value": 1700 },
+      { "year": "2021–22", "state": "South Australia",   "rank": 4, "value": 430  },
+      { "year": "2021–22", "state": "Western Australia", "rank": 5, "value": 480  },
+      { "year": "2021–22", "state": "Tasmania",          "rank": 6, "value": 140  },
+      { "year": "2022–23", "state": "Victoria",          "rank": 1, "value": 6400 },
+      { "year": "2022–23", "state": "Queensland",        "rank": 2, "value": 1900 },
+      { "year": "2022–23", "state": "New South Wales",   "rank": 3, "value": 1350 },
+      { "year": "2022–23", "state": "South Australia",   "rank": 4, "value": 440  },
+      { "year": "2022–23", "state": "Western Australia", "rank": 5, "value": 560  },
+      { "year": "2022–23", "state": "Tasmania",          "rank": 6, "value": 155  },
+      { "year": "2023–24", "state": "Victoria",          "rank": 1, "value": 6916 },
+      { "year": "2023–24", "state": "Queensland",        "rank": 2, "value": 2024 },
+      { "year": "2023–24", "state": "New South Wales",   "rank": 3, "value": 1446 },
+      { "year": "2023–24", "state": "South Australia",   "rank": 4, "value": 433  },
+      { "year": "2023–24", "state": "Western Australia", "rank": 5, "value": 600  },
+      { "year": "2023–24", "state": "Tasmania",          "rank": 6, "value": 166  }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "monotone",
+        "point": false
+      },
+      "encoding": {
+      "x": {
+        "field": "year",
+        "type": "ordinal",
+        "axis": {
+          "title": null,
+          "labelAngle": 0,
+          "labelFontSize": 11,
+          "grid": false
+        }
+      },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": { "domain": [6.5, 0.5] },
+          "axis": {
+            "title": "Rank",
+            "values": [1, 2, 3, 4, 5, 6],
+            "labelFontSize": 11,
+            "grid": true,
+            "gridColor": "#eeeeee"
+          }
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Victoria", "Queensland", "New South Wales", "South Australia", "Western Australia", "Tasmania"],
+            "range": ["#1c3d1f", "#f4a225", "#4a8c3f", "#d4663a", "#6b4c8a", "#2e7a6a"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "right",
+            "labelFontSize": 11,
+            "offset": 50
+          }
+        },
+        "tooltip": [
+          { "field": "year",  "title": "Year" },
+          { "field": "state", "title": "State" },
+          { "field": "rank",  "title": "Rank" },
+          { "field": "value", "title": "Farm gate value ($m)", "format": "," }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100
+      },
+      "encoding": {
+        "x": { "field": "year",  "type": "ordinal" },
+        "y": { "field": "rank",  "type": "quantitative", "scale": { "domain": [6.5, 0.5] } },
+        "color": { "field": "state", "type": "nominal",
+          "scale": {
+            "domain": ["Victoria", "Queensland", "New South Wales", "South Australia", "Western Australia", "Tasmania"],
+            "range": ["#1c3d1f", "#f4a225", "#4a8c3f", "#d4663a", "#6b4c8a", "#2e7a6a"]
+          }
+        },
+        "tooltip": [
+          { "field": "year",  "title": "Year" },
+          { "field": "state", "title": "State" },
+          { "field": "rank",  "title": "Rank" },
+          { "field": "value", "title": "Farm gate value ($m)", "format": "," }
+        ]
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.year == '2023–24'" }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 10,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": { "field": "year",  "type": "ordinal" },
+        "y": { "field": "rank",  "type": "quantitative", "scale": { "domain": [6.5, 0.5] } },
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Victoria", "Queensland", "New South Wales", "South Australia", "Western Australia", "Tasmania"],
+            "range": ["#1c3d1f", "#f4a225", "#4a8c3f", "#d4663a", "#6b4c8a", "#2e7a6a"]
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": "transparent" }
+  }
+}

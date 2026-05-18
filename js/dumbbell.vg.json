@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Connected dot plot (dumbbell) showing change in farm gate value from 2020-21 to 2023-24 by state",
+  "width": "container",
+  "height": 320,
+  "data": {
+    "values": [
+      { "state": "Victoria",          "val2020": 5612, "val2023": 6916, "change": 1304 },
+      { "state": "Queensland",        "val2020": 1606, "val2023": 2024, "change": 418  },
+      { "state": "New South Wales",   "val2020": 1044, "val2023": 1446, "change": 402  },
+      { "state": "Western Australia", "val2020": 415,  "val2023": 600,  "change": 185  },
+      { "state": "South Australia",   "val2020": 421,  "val2023": 433,  "change": 12   },
+      { "state": "Tasmania",          "val2020": 122,  "val2023": 166,  "change": 44   }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#b0c4b0"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": { "field": "val2023", "order": "descending" },
+          "axis": {
+            "title": null,
+            "labelFontSize": 12,
+            "labelFontWeight": "bold"
+          }
+        },
+        "x": {
+          "field": "val2020",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "val2023"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": ["val2020", "val2023"],
+          "as": ["year_key", "value"]
+        },
+        {
+          "calculate": "datum.year_key === 'val2020' ? '2020–21' : '2023–24'",
+          "as": "year_label"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": { "field": "val2023", "order": "descending" },
+          "axis": { "title": null }
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {
+            "title": "Farm gate value ($million)",
+            "titleFontSize": 11,
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "labelFontSize": 10
+          }
+        },
+        "color": {
+          "field": "year_label",
+          "type": "nominal",
+          "scale": {
+            "domain": ["2020–21", "2023–24"],
+            "range": ["#b0c4b0", "#1c3d1f"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "labelFontSize": 12
+          }
+        },
+        "tooltip": [
+          { "field": "state",      "title": "State" },
+          { "field": "year_label", "title": "Year" },
+          { "field": "value",      "title": "Farm gate value ($m)", "format": "," }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "'+$' + datum.change + 'm'",
+          "as": "change_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#2d5a2d"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": { "field": "val2023", "order": "descending" }
+        },
+        "x": { "field": "val2023", "type": "quantitative" },
+        "text": { "field": "change_label" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": "transparent" }
+  }
+}

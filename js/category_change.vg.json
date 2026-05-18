@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 420,
+
+  "data": {
+    "url": "data/horticulture_summary.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    {
+      "filter": "datum.Region == 'Australia'"
+    },
+    {
+      "fold": ["2020-21", "2021-22", "2022-23", "2023-24"],
+      "as": ["Year", "Value_raw"]
+    },
+    {
+      "calculate": "toNumber(replace(datum.Value_raw, ',', ''))",
+      "as": "Value"
+    },
+    {
+      "calculate": "replace(datum['Data item'], ' - Farm gate value ($m)', '')",
+      "as": "Category"
+    },
+    {
+      "calculate": "datum.Category == 'Fruit (excluding wine grapes)' ? 'Fruit' : datum.Category",
+      "as": "Category"
+    }
+  ],
+
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 2,
+    "cornerRadiusTopRight": 2
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 12
+      }
+    },
+
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Farm gate value ($ million)"
+    },
+
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "title": null,
+        "columns": 3,
+        "labelFontSize": 11
+      },
+      "scale": {
+        "domain": [
+          "Fruit",
+          "Wine grapes",
+          "Vegetables",
+          "Nuts",
+          "Nursery"
+        ],
+        "range": [
+          "#c45745",
+          "#8f5ab5",
+          "#4caf68",
+          "#c8a030",
+          "#4f8c84"
+        ]
+      }
+    },
+
+    "tooltip": [
+      {"field": "Year"},
+      {"field": "Category"},
+      {
+        "field": "Value",
+        "title": "Farm gate value ($m)",
+        "type": "quantitative",
+        "format": ",.1f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {"stroke": null}
+  }
+}

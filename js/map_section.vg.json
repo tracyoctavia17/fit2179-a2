@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Farm Gate Value by State (2023–24)",
+  "hconcat": [
+    {
+      "width": 450,
+      "height": 350,
+      "projection": { "type": "mercator" },
+      "layer": [
+        {
+          "data": {
+            "url": "js/au-states-topo.json",
+            "format": { "type": "topojson", "feature": "austates" }
+          },
+          "mark": { "type": "geoshape", "fill": "#e8e8e8", "stroke": "white", "strokeWidth": 1 }
+        },
+        {
+          "data": {
+            "url": "js/au-states-topo.json",
+            "format": { "type": "topojson", "feature": "austates" }
+          },
+          "transform": [
+            {
+              "lookup": "id",
+              "from": {
+                "data": {
+                  "values": [
+                    { "id": 0, "state": "New South Wales",              "total_value": 3483.2,  "rank": 3 },
+                    { "id": 1, "state": "Victoria",                     "total_value": 4989.8,  "rank": 1 },
+                    { "id": 2, "state": "Queensland",                   "total_value": 4441.8,  "rank": 2 },
+                    { "id": 3, "state": "South Australia",           "total_value": 2260.50, "rank": 4 },
+                    { "id": 4, "state": "Western Australia",            "total_value": 1390.3,  "rank": 5 },
+                    { "id": 5, "state": "Tasmania",                     "total_value": 1024.6,  "rank": 6 },
+                    { "id": 6, "state": "Northern Territory",           "total_value": 221.8,   "rank": 7 },
+                    { "id": 7, "state": "Australian Capital Territory", "total_value": 0.2,     "rank": 8 }
+                  ]
+                },
+                "key": "id",
+                "fields": ["state", "total_value", "rank"]
+              }
+            }
+          ],
+          "params": [
+            {
+              "name": "state_select",
+              "select": { "type": "point", "fields": ["state"] },
+              "value": [{ "state": "Victoria" }]
+            }
+          ],
+          "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 1.2 },
+          "encoding": {
+            "color": {
+              "field": "total_value",
+              "type": "quantitative",
+              "scale": { "scheme": "greens", "domain": [0, 7000] },
+              "legend": {
+                "title": "Farm gate value ($m)",
+                "orient": "bottom-left",
+                "gradientLength": 150
+              }
+            },
+            "opacity": {
+              "condition": { "param": "state_select", "value": 1 },
+              "value": 0.4
+            },
+            "tooltip": [
+              { "field": "state",       "title": "State" },
+              { "field": "total_value", "title": "Farm gate value ($m)", "format": "," },
+              { "field": "rank",        "title": "National rank" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Crop Breakdown — click a state on the map",
+      "width": 280,
+      "height": 350,
+      "data": {
+        "values": [
+          { "state": "Victoria",          "category": "Fruit",             "value": 3680 },
+          { "state": "Victoria",          "category": "Vegetables",        "value": 1702 },
+          { "state": "Victoria",          "category": "Nuts",              "value": 1248 },
+          { "state": "Victoria",          "category": "Wine grapes",       "value": 192  },
+          { "state": "Victoria",          "category": "Nursery & Flowers", "value": 94   },
+          { "state": "Victoria",          "category": "Other",             "value": 23   },
+          { "state": "Queensland",        "category": "Fruit",             "value": 1200 },
+          { "state": "Queensland",        "category": "Vegetables",        "value": 650  },
+          { "state": "Queensland",        "category": "Nuts",              "value": 100  },
+          { "state": "Queensland",        "category": "Wine grapes",       "value": 50   },
+          { "state": "Queensland",        "category": "Nursery & Flowers", "value": 80   },
+          { "state": "Queensland",        "category": "Other",             "value": 40   },
+          { "state": "New South Wales",   "category": "Fruit",             "value": 600  },
+          { "state": "New South Wales",   "category": "Vegetables",        "value": 450  },
+          { "state": "New South Wales",   "category": "Nuts",              "value": 155  },
+          { "state": "New South Wales",   "category": "Wine grapes",       "value": 130  },
+          { "state": "New South Wales",   "category": "Nursery & Flowers", "value": 76   },
+          { "state": "New South Wales",   "category": "Other",             "value": 35   },
+          { "state": "South Australia",   "category": "Fruit",             "value": 200  },
+          { "state": "South Australia",   "category": "Vegetables",        "value": 80   },
+          { "state": "South Australia",   "category": "Nuts",              "value": 50   },
+          { "state": "South Australia",   "category": "Wine grapes",       "value": 1300 },
+          { "state": "South Australia",   "category": "Nursery & Flowers", "value": 20   },
+          { "state": "South Australia",   "category": "Other",             "value": 15   },
+          { "state": "Western Australia", "category": "Fruit",             "value": 350  },
+          { "state": "Western Australia", "category": "Vegetables",        "value": 150  },
+          { "state": "Western Australia", "category": "Nuts",              "value": 80   },
+          { "state": "Western Australia", "category": "Wine grapes",       "value": 80   },
+          { "state": "Western Australia", "category": "Nursery & Flowers", "value": 30   },
+          { "state": "Western Australia", "category": "Other",             "value": 20   },
+          { "state": "Tasmania",          "category": "Fruit",             "value": 120  },
+          { "state": "Tasmania",          "category": "Vegetables",        "value": 30   },
+          { "state": "Tasmania",          "category": "Nuts",              "value": 5    },
+          { "state": "Tasmania",          "category": "Wine grapes",       "value": 5    },
+          { "state": "Tasmania",          "category": "Nursery & Flowers", "value": 10   },
+          { "state": "Tasmania",          "category": "Other",             "value": 10   },
+          { "state": "Northern Territory", "category": "Fruit",             "value": 180.8 },
+          { "state": "Northern Territory", "category": "Vegetables",        "value": 6.6   },
+          { "state": "Northern Territory", "category": "Nursery & Flowers", "value": 34.4  }
+          
+        ]
+      },
+      "transform": [
+        { "filter": { "param": "state_select" } }
+      ],
+      "mark": { "type": "bar", "cornerRadiusEnd": 3 },
+      "encoding": {
+        "y": {
+          "field": "category",
+          "type": "nominal",
+          "sort": "-x",
+          "axis": { "title": null, "labelFontSize": 11 }
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {
+            "title": "Farm gate value ($m)",
+            "titleFontSize": 11,
+            "grid": true,
+            "gridColor": "#eeeeee"
+          }
+        },
+        "color": {
+          "field": "category",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Fruit", "Vegetables", "Nuts", "Wine grapes", "Nursery & Flowers", "Other"],
+            "range": ["#c0392b", "#27ae60", "#c8a030", "#8e44ad", "#e67e22", "#95a5a6"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "state",    "title": "State" },
+          { "field": "category", "title": "Category" },
+          { "field": "value",    "title": "Value ($m)", "format": "," }
+        ]
+      }
+    }
+  ],
+  "resolve": { "scale": { "color": "independent" } },
+  "config": { "view": { "stroke": "transparent" } }
+}
