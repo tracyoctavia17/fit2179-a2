@@ -41,7 +41,21 @@
           "name": "crop_legend",
           "select": { "type": "point", "fields": ["crop"] },
           "bind": "legend"
+        },
+        {
+          "name": "minProd",
+          "value": 0,
+          "bind": {
+            "input": "range",
+            "min": 0,
+            "max": 400000,
+            "step": 10000,
+            "name": "Min. production (tonnes): "
+          }
         }
+      ],
+      "transform": [
+        {"filter": "datum.production >= minProd"}
       ],
       "mark": {
         "type": "circle",

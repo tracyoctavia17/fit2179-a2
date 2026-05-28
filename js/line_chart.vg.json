@@ -7,9 +7,24 @@
     "url": "data/gross_value.csv",
     "format": {"type": "csv"}
   },
+  "params": [
+    {
+      "name": "startYear",
+      "value": 1979,
+      "bind": {
+        "input": "range",
+        "min": 1979,
+        "max": 2020,
+        "step": 1,
+        "name": "Show from year: "
+      }
+    }
+  ],
   "transform": [
     {"filter": "datum.Value != null && datum.Value != ''"},
     {"calculate": "toNumber(datum.Value)", "as": "Value_num"},
+    {"calculate": "toNumber(substring(datum.Year, 0, 4))", "as": "year_num"},
+    {"filter": "datum.year_num >= startYear"},
     {
       "calculate": "datum.Commodity == 'Fruit and nuts (excluding grapes)' ? 'Fruit & nuts' : datum.Commodity == 'Nursery, cut flowers and turf' ? 'Nursery' : datum.Commodity",
       "as": "Commodity_short"
