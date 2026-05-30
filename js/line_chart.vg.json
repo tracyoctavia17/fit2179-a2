@@ -14,7 +14,7 @@
       "bind": {
         "input": "range",
         "min": 1979,
-        "max": 2020,
+        "max": 2015,
         "step": 1,
         "name": "Show from year: "
       }

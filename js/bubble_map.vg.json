@@ -4,6 +4,18 @@
   "width": "container",
   "height": 500,
   "projection": { "type": "mercator", "center": [134, -27], "scale": 850 },
+  "params": [
+    {
+      "name": "selectedCrop",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Apples", "Almonds", "Wine grapes", "Avocados", "Vegetables"],
+        "labels": ["All crops", "Apples", "Almonds", "Wine grapes", "Avocados", "Vegetables"],
+        "name": "Filter by crop: "
+      }
+    }
+  ],
   "layer": [
     {
       "data": {
@@ -41,16 +53,6 @@
           "name": "crop_legend",
           "select": { "type": "point", "fields": ["crop"] },
           "bind": "legend"
-        },
-        {
-          "name": "selectedCrop",
-          "value": "All",
-          "bind": {
-            "input": "select",
-            "options": ["All", "Apples", "Almonds", "Wine grapes", "Avocados", "Vegetables"],
-            "labels": ["All crops", "Apples", "Almonds", "Wine grapes", "Avocados", "Vegetables"],
-            "name": "Filter by crop: "
-          }
         }
       ],
       "transform": [
@@ -71,7 +73,7 @@
           "scale": { "range": [40, 1200] },
           "legend": {
             "title": "Production (tonnes)",
-            "orient": "bottom-left",
+            "orient": "left",
             "symbolFillColor": "#aaa",
             "values": [50000, 150000, 300000, 500000]
           }
@@ -100,7 +102,29 @@
           { "field": "production", "title": "Production (t)", "format": "," }
         ]
       }
-    }
+    },
+    {
+  "data": {
+    "values": [
+      { "lat": -34.8, "lon": 138.5, "label": "Australia's largest wine grape region!" }
+    ]
+  },
+  "mark": {
+    "type": "text",
+    "fontSize": 11,
+    "fontWeight": "bold",
+    "fontStyle": "italic",
+    "color": "#ed8a48",
+    "align": "left",
+    "dx": -120,
+    "dy": 30
+  },
+  "encoding": {
+    "longitude": { "field": "lon", "type": "quantitative" },
+    "latitude":  { "field": "lat", "type": "quantitative" },
+    "text":      { "field": "label", "type": "nominal" }
+  }
+}
   ],
   "config": {
     "view": { "stroke": "transparent" }

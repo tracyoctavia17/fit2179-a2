@@ -5,12 +5,12 @@
   "height": 320,
   "data": {
     "values": [
-      { "state": "Victoria",          "val2020": 5612, "val2023": 6916, "change": 1304 },
-      { "state": "Queensland",        "val2020": 1606, "val2023": 2024, "change": 418  },
-      { "state": "New South Wales",   "val2020": 1044, "val2023": 1446, "change": 402  },
-      { "state": "Western Australia", "val2020": 415,  "val2023": 600,  "change": 185  },
-      { "state": "South Australia",   "val2020": 421,  "val2023": 433,  "change": 12   },
-      { "state": "Tasmania",          "val2020": 122,  "val2023": 166,  "change": 44   }
+      { "state": "Victoria",          "val2020": 4899.8, "val2023": 4989.8, "change": 90.0  },
+      { "state": "Queensland",        "val2020": 4080.9, "val2023": 4441.8, "change": 360.9 },
+      { "state": "New South Wales",   "val2020": 3113.6, "val2023": 3483.2, "change": 369.6 },
+      { "state": "South Australia",   "val2020": 2249.9, "val2023": 2260.5, "change": 10.6  },
+      { "state": "Western Australia", "val2020": 1071.5, "val2023": 1390.3, "change": 318.8 },
+      { "state": "Tasmania",          "val2020": 802.0,  "val2023": 1024.6, "change": 222.6 }
     ]
   },
   "layer": [

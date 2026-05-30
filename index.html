@@ -60,7 +60,7 @@
         <div class="stat-label">Top State</div>
         <img src="images/victoria.png" alt="Victoria">
         <div class="stat-value stat-value--state">Victoria</div>
-        <div class="stat-note">Leads with $6.9B in farm gate value</div>
+        <div class="stat-note">Leads with $5.0B in farm gate value</div>
       </div>
       <div class="stat-card" onclick="scrollToSection('avocado')">
         <div class="stat-label">Fastest Growing Crop <small>(2020–21 to 2023–24)</small></div>
@@ -155,7 +155,7 @@
         <h3>Value clusters in the east and south.</h3>
         <p>
           Horticultural value is concentrated along Australia's eastern and southern regions.
-          <strong>Victoria leads nationally with $6.9B</strong>, followed by Queensland and
+          <strong>Victoria leads nationally with $5.0B</strong>, followed by Queensland and
           New South Wales.
         </p>
         <p>
@@ -173,7 +173,7 @@
       <div>
         <div class="section-header">
           <span class="section-num">5</span>
-          <h2>Who's Rising? <span class="year-tag">State Rankings Over Time</span></h2>
+          <h2>Rankings Holds Firm <span class="year-tag">State Rankings Over Time</span></h2>
         </div>
 
         <p class="section-intro">By total farm gate value</p>
@@ -182,11 +182,11 @@
 
         <div class="insight-col">
           <div class="insight-box">
-            <h3>Queensland moves into second place.</h3>
+            <h3>Victoria leads. Rankings hold firm.</h3>
             <p>
-              Victoria has held the top spot throughout, but the story below it is changing.
-              <strong>Queensland climbed past New South Wales</strong> to become Australia's
-              second-largest horticulture state by 2023–24.
+              <strong>Victoria has led Australian horticulture every year</strong> without challenge. Rankings have remained 
+              locked in place since 2020, with each state holding a consistent, specialised role in the 
+              national industry. No state has gained or lost ground in four years.
             </p>
           </div>
         </div>
@@ -206,9 +206,10 @@
           <div class="insight-box">
             <h3>Recent growth is uneven.</h3>
             <p>
-              <strong>Queensland recorded the strongest absolute growth</strong> over four years,
-              reinforcing its rise as a horticulture powerhouse. Victoria also grew substantially,
-              while smaller states such as Tasmania showed steadier gains despite their size.
+              <strong>New South Wales and Queensland recorded the strongest absolute growth</strong>,
+              each gaining over $360 million. <strong>Western Australia and Tasmania</strong> also
+              posted strong gains relative to their size, while Victoria and South Australia
+              saw modest increases.
             </p>
           </div>
         </div>
@@ -234,11 +235,11 @@
         <div class="insight-box">
           <h3>Every state grows differently.</h3>
           <p>
-            While <strong>Victoria leads across nearly every major crop category</strong>,
-            other states reveal specialised strengths. <strong>Queensland excels in fruit and
-            nursery production</strong>, <strong>South Australia is defined by wine grapes</strong>,
-            and <strong>New South Wales shows a balanced mix</strong> across fruit, vegetables,
-            and nuts.
+            <strong>Queensland leads in fruit and nursery</strong>, the two highest-value
+            categories nationally. <strong>Victoria dominates vegetables and nuts</strong>,
+            while <strong>South Australia is defined by wine grapes</strong>.
+            <strong>New South Wales shows a balanced mix</strong> across fruit, vegetables,
+            and nursery production.
           </p>
           <p>
             Together, these regional strengths create a complementary national horticulture
@@ -299,7 +300,7 @@
       <div class="insight-col">
         <div class="insight-box">
           <h3>Avocado production nearly doubled in 4 years!</h3>
-          <p>From <strong>77,981 tonnes</strong> in 2020–21 to <strong>150,913 tonnes</strong> in 2023–24, avocados are Australia's fastest-growing major crop
+          <p>From <strong>78,085 tonnes</strong> in 2020–21 to <strong>150,913 tonnes</strong> in 2023–24, avocados are Australia's fastest-growing major crop
              fuelled by strong domestic demand and expanding plantings in Queensland.</p>
           <p>Once a niche imported fruit, avocados are now a mainstream staple, and Australian growers are scaling up to meet the appetite.</p>
         </div>
@@ -315,36 +316,30 @@
     </div>
 
     <p class="section-intro">
-      Box size = farm gate value ($million).
+      Colour intensity = farm gate value ($million). Darker = higher value.
     </p>
 
-    <div class="two-col-layout insight-left">
+    <div class="chart-container chart-container--full" id="heatmap-chart"></div>
 
-      <div class="insight-col">
-        <div class="insight-box">
-          <h3>Fruit accounts for nearly half of all value.</h3>
-          <p>
-            <strong>Fruit dominates</strong> with <strong>$8.0 billion</strong>,
-            contributing almost <strong>47%</strong> of Australia's entire
-            horticulture industry.
-          </p>
-          <p>
-            No single crop drives this dominance. Instead, it reflects a broad mix
-            of apples, avocados, cherries, citrus, and other fruit crops grown
-            across multiple states.
-          </p>
-          <p>
-            Vegetables follow at <strong>$4.4 billion</strong>, while
-            <strong>nuts and wine grapes</strong> generate smaller volumes but
-            deliver exceptionally high value per tonne.
-          </p>
-        </div>
+    <div class="insight-col">
+      <div class="insight-box">
+        <h3>Fruit accounts for nearly half of all value.</h3>
+        <p>
+          <strong>Fruit dominates</strong> with <strong>$6.8 billion</strong>,
+          contributing around <strong>38%</strong> of Australia's entire
+          horticulture industry.
+        </p>
+        <p>
+          No single crop drives this dominance. Instead, it reflects a broad mix
+          of apples, avocados, cherries, citrus, and other fruit crops grown
+          across multiple states.
+        </p>
+        <p>
+          Vegetables follow closely at <strong>$5.7 billion</strong>, while
+          <strong>nuts and wine grapes</strong> generate smaller volumes but
+          deliver exceptionally high value per tonne.
+        </p>
       </div>
-
-      <div class="chart-col chart-col--wide">
-        <div class="chart-container chart-container--full" id="treemap-chart"></div>
-      </div>
-
     </div>
   </section>
 
@@ -352,7 +347,7 @@
   <section class="section section--summary reveal" id="summary">
 
     <div class="section-header">
-      <h2>What Did We Learn?</h2>
+      <h2>Conclusion</h2>
     </div>
 
     <div class="insight-box">
@@ -363,10 +358,10 @@
         export expansion, and increasingly specialised production systems.
       </p>
       <p>
-        <strong>Victoria remains the national leader</strong>, but Queensland's rapid
-        rise signals shifting production momentum. Across the country, each state
-        contributes its own agricultural identity, from tropical fruit in the north
-        to wine grapes, almonds, and cool-climate crops in the south.
+        <strong>Victoria remains the national leader</strong>, with rankings stable
+        across all four years. Across the country, each state contributes its own
+        agricultural identity, from tropical fruit in the north to wine grapes,
+        almonds, and cool-climate crops in the south.
       </p>
       <p>
         Looking ahead, fast-growing crops such as
@@ -376,6 +371,24 @@
         more valuable, and more regionally distinct.
       </p>
     </div>
+
+<div class="footer-col">
+  <h4>Data Sources</h4>
+  <ul>
+    <li>ABARES – Australian Horticulture Statistics 2023–24</li>
+    <li><a href="https://www.agriculture.gov.au/abares" target="_blank">www.agriculture.gov.au/abares</a></li>
+  </ul>
+  <ul>
+  <li>ABARES – Horticulture Statistics 2023–24</li>
+  <li><a href="https://www.agriculture.gov.au/abares/research-topics/agricultural-commodities/horticulture" target="_blank">www.agriculture.gov.au/abares</a></li>
+</ul>
+</div>
+
+<div class="footer-col footer-col--author">
+  <p>Tracy Octavia Anwar (33332649)</p>
+</div>
+
+</div>
 
   </section>
 
@@ -413,7 +426,7 @@
   vegaEmbed('#radar-chart',            'js/radar.vg.json',           embedOpts).catch(console.error);
   vegaEmbed('#bubble-map',             'js/bubble_map.vg.json',      embedOpts).catch(console.error);
   vegaEmbed('#avocado-chart',          'js/avocado.vg.json',         embedOpts).catch(console.error);
-  vegaEmbed('#treemap-chart',          'js/treemap.vg.json',         embedOpts).catch(console.error);
+  vegaEmbed('#heatmap-chart',          'js/heatmap.json',            embedOpts).catch(console.error);
   vegaEmbed('#category-change-chart',  'js/category_change.vg.json', embedOpts).catch(console.error);
 
   /* ---- Smooth scroll helper ---- */
