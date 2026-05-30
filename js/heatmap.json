@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap showing farm gate value by state and crop category (2023-24)",
+  "width": "container",
+  "height": 320,
+  "data": {
+    "values": [
+      { "state": "Victoria",          "category": "Fruit",       "value": 1813.0 },
+      { "state": "Victoria",          "category": "Vegetables",  "value": 1669.1 },
+      { "state": "Victoria",          "category": "Nuts",        "value": 420.8  },
+      { "state": "Victoria",          "category": "Wine grapes", "value": 178.2  },
+      { "state": "Victoria",          "category": "Nursery",     "value": 908.7  },
+      { "state": "Queensland",        "category": "Fruit",       "value": 2024.1 },
+      { "state": "Queensland",        "category": "Vegetables",  "value": 1312.5 },
+      { "state": "Queensland",        "category": "Nuts",        "value": 139.9  },
+      { "state": "Queensland",        "category": "Wine grapes", "value": 1.4    },
+      { "state": "Queensland",        "category": "Nursery",     "value": 963.9  },
+      { "state": "New South Wales",   "category": "Fruit",       "value": 1445.7 },
+      { "state": "New South Wales",   "category": "Vegetables",  "value": 595.5  },
+      { "state": "New South Wales",   "category": "Nuts",        "value": 347.8  },
+      { "state": "New South Wales",   "category": "Wine grapes", "value": 174.0  },
+      { "state": "New South Wales",   "category": "Nursery",     "value": 920.2  },
+      { "state": "South Australia",   "category": "Fruit",       "value": 433.1  },
+      { "state": "South Australia",   "category": "Vegetables",  "value": 934.8  },
+      { "state": "South Australia",   "category": "Nuts",        "value": 272.2  },
+      { "state": "South Australia",   "category": "Wine grapes", "value": 518.3  },
+      { "state": "South Australia",   "category": "Nursery",     "value": 102.1  },
+      { "state": "Western Australia", "category": "Fruit",       "value": 600.4  },
+      { "state": "Western Australia", "category": "Vegetables",  "value": 424.3  },
+      { "state": "Western Australia", "category": "Nuts",        "value": 7.3    },
+      { "state": "Western Australia", "category": "Wine grapes", "value": 72.3   },
+      { "state": "Western Australia", "category": "Nursery",     "value": 286.0  },
+      { "state": "Tasmania",          "category": "Fruit",       "value": 299.6  },
+      { "state": "Tasmania",          "category": "Vegetables",  "value": 629.9  },
+      { "state": "Tasmania",          "category": "Nuts",        "value": 10.1   },
+      { "state": "Tasmania",          "category": "Wine grapes", "value": 61.0   },
+      { "state": "Tasmania",          "category": "Nursery",     "value": 24.0   }
+    ]
+  },
+  "padding": { "top": 30, "bottom": 10, "left": 10, "right": 10},
+  "mark": { "type": "rect", "cornerRadius": 3 },
+  "encoding": {
+    "x": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": ["Fruit", "Vegetables", "Nursery", "Wine grapes", "Nuts"],
+      "axis": {
+        "labelFontSize": 12,
+        "labelFontWeight": "bold",
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": ["Victoria", "Queensland", "New South Wales", "South Australia", "Western Australia", "Tasmania"],
+      "axis": {
+        "labelFontSize": 11
+      }
+    },
+    "color": {
+      "field": "value",
+      "type": "quantitative",
+      "scale": {
+        "type": "log",
+        "scheme": "greens"
+      },
+      "legend": {
+        "title": "Farm gate value ($m)",
+        "orient": "right",
+        "gradientLength": 200,
+        "labelFontSize": 10
+      }
+    },
+    "tooltip": [
+      { "field": "state",    "title": "State" },
+      { "field": "category", "title": "Category" },
+      { "field": "value",    "title": "Farm gate value ($m)", "format": ",.1f" }
+    ]
+  },
+  "config": {
+    "view": { "stroke": "transparent" },
+    "axis": { "grid": false }
+  }
+}

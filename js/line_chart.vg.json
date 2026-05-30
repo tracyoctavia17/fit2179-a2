@@ -2,10 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 400,
-  "padding": {"bottom": 45},
+  "padding": { "top": 10, "bottom": 45, "left": 10, "right": 45},
   "data": {
     "url": "data/gross_value.csv",
-    "format": {"type": "csv"}
+    "format": { "type": "csv" }
   },
   "params": [
     {
@@ -21,53 +21,89 @@
     }
   ],
   "transform": [
-    {"filter": "datum.Value != null && datum.Value != ''"},
-    {"calculate": "toNumber(datum.Value)", "as": "Value_num"},
-    {"calculate": "toNumber(substring(datum.Year, 0, 4))", "as": "year_num"},
-    {"filter": "datum.year_num >= startYear"},
+    { "filter": "datum.Value != null && datum.Value != ''" },
+    { "calculate": "toNumber(datum.Value)", "as": "Value_num" },
+    { "calculate": "toNumber(substring(datum.Year, 0, 4))", "as": "year_num" },
+    { "filter": "datum.year_num >= startYear" },
     {
-      "calculate": "datum.Commodity == 'Fruit and nuts (excluding grapes)' ? 'Fruit & nuts' : datum.Commodity == 'Nursery, cut flowers and turf' ? 'Nursery' : datum.Commodity",
+      "calculate": "datum.Commodity == 'Fruit and nuts (excl. grapes)' ? 'Fruit & nuts' : datum.Commodity == 'Nursery, cut flowers and turf' ? 'Nursery' : datum.Commodity",
       "as": "Commodity_short"
     }
   ],
-  "mark": {
-    "type": "line",
-    "point": false
-  },
-  "encoding": {
-    "x": {
-      "field": "Year",
-      "type": "ordinal",
-      "title": null,
-      "axis": {
-        "labelAngle": 0,
-        "labelOverlap": "parity",
-        "labelFontSize": 12
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": false,
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "labelOverlap": "parity",
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "Value_num",
+          "type": "quantitative",
+          "title": "Farm gate value ($ million)",
+          "axis": {
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "grid": true,
+            "gridColor": "#eeeeee"
+          }
+        },
+        "color": {
+          "field": "Commodity_short",
+          "type": "nominal",
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": null,
+            "columns": 3,
+            "labelFontSize": 11,
+            "labelLimit": 220,
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 3
+          }
+        },
+        "tooltip": [
+          { "field": "Commodity",  "type": "nominal" },
+          { "field": "Year",       "type": "ordinal" },
+          { "field": "Value_num",  "type": "quantitative", "title": "Value ($m)", "format": "," }
+        ]
       }
     },
-    "y": {
-      "field": "Value_num",
-      "type": "quantitative",
-      "title": "Farm gate value ($ million)"
-    },
-    "color": {
-      "field": "Commodity_short",
-      "type": "nominal",
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "title": null,
-        "columns": 3,
-        "labelFontSize": 11,
-        "labelLimit": 220,
-        "symbolType": "stroke",
-        "symbolStrokeWidth": 3
+    {
+      "transform": [
+        { "filter": "datum.Commodity == 'Total horticulture'" },
+        { "filter": "datum.Year == '2023–24'" }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -60,
+        "dy": -10,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fontStyle": "italic",
+        "color": "#ed8a48"
+      },
+      "encoding": {
+        "x": { "field": "Year",      "type": "ordinal" },
+        "y": { "field": "Value_num", "type": "quantitative" },
+        "text": { "value": "$17 billion industry value" }
       }
-    },
-    "tooltip": [
-      {"field": "Commodity", "type": "nominal"},
-      {"field": "Year", "type": "ordinal"},
-      {"field": "Value_num", "type": "quantitative", "title": "Value", "format": ","}
-    ]
+    }
+  ],
+  "config": {
+    "view": { "stroke": "transparent" }
   }
 }

@@ -2,13 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bubble map showing major production hubs by crop type across Australia (2023-24)",
   "width": "container",
-  "height": 420,
-  "projection": { "type": "mercator" },
+  "height": 500,
+  "projection": { "type": "mercator", "center": [134, -27], "scale": 850 },
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
-        "format": { "type": "json" }
+        "url": "js/au-states-topo.json",
+        "format": { "type": "topojson", "feature": "austates" }
       },
       "mark": {
         "type": "geoshape",
@@ -20,20 +20,20 @@
     {
       "data": {
         "values": [
-          { "crop": "Apples",      "lat": -36.8, "lon": 145.5, "production": 180000, "state": "Victoria",         "note": "Goulburn Valley, VIC" },
-          { "crop": "Apples",      "lat": -42.5, "lon": 147.1, "production":  50000, "state": "Tasmania",         "note": "Huon Valley, TAS" },
-          { "crop": "Almonds",     "lat": -34.0, "lon": 139.3, "production": 150000, "state": "South Australia",  "note": "Riverland, SA" },
-          { "crop": "Almonds",     "lat": -34.2, "lon": 142.5, "production":  60000, "state": "Victoria",         "note": "Sunraysia, VIC" },
-          { "crop": "Almonds",     "lat": -30.5, "lon": 143.0, "production":  40000, "state": "New South Wales",  "note": "Central NSW" },
-          { "crop": "Wine grapes", "lat": -34.8, "lon": 138.5, "production": 500000, "state": "South Australia",  "note": "Barossa & Riverland, SA" },
-          { "crop": "Wine grapes", "lat": -36.3, "lon": 146.8, "production": 200000, "state": "Victoria",         "note": "North-east VIC" },
-          { "crop": "Wine grapes", "lat": -33.8, "lon": 149.1, "production":  80000, "state": "New South Wales",  "note": "Riverina, NSW" },
-          { "crop": "Avocados",    "lat": -17.1, "lon": 145.5, "production":  60000, "state": "Queensland",       "note": "Atherton Tablelands, QLD" },
-          { "crop": "Avocados",    "lat": -24.9, "lon": 152.3, "production":  50000, "state": "Queensland",       "note": "Bundaberg, QLD" },
-          { "crop": "Vegetables",  "lat": -27.2, "lon": 152.8, "production": 300000, "state": "Queensland",       "note": "South-east QLD" },
-          { "crop": "Vegetables",  "lat": -37.2, "lon": 144.8, "production": 400000, "state": "Victoria",         "note": "Goulburn Valley, VIC" },
-          { "crop": "Vegetables",  "lat": -34.5, "lon": 138.3, "production": 150000, "state": "South Australia",  "note": "Adelaide Plains, SA" },
-          { "crop": "Vegetables",  "lat": -31.9, "lon": 115.9, "production": 120000, "state": "Western Australia","note": "Swan Valley, WA" }
+          { "crop": "Apples",      "lat": -36.8, "lon": 145.5, "production": 180000, "state": "Victoria",          "note": "Goulburn Valley, VIC" },
+          { "crop": "Apples",      "lat": -42.5, "lon": 147.1, "production":  50000, "state": "Tasmania",          "note": "Huon Valley, TAS" },
+          { "crop": "Almonds",     "lat": -34.0, "lon": 139.3, "production": 150000, "state": "South Australia",   "note": "Riverland, SA" },
+          { "crop": "Almonds",     "lat": -34.2, "lon": 142.5, "production":  60000, "state": "Victoria",          "note": "Sunraysia, VIC" },
+          { "crop": "Almonds",     "lat": -30.5, "lon": 143.0, "production":  40000, "state": "New South Wales",   "note": "Central NSW" },
+          { "crop": "Wine grapes", "lat": -34.8, "lon": 138.5, "production": 500000, "state": "South Australia",   "note": "Barossa & Riverland, SA" },
+          { "crop": "Wine grapes", "lat": -36.3, "lon": 146.8, "production": 200000, "state": "Victoria",          "note": "North-east VIC" },
+          { "crop": "Wine grapes", "lat": -33.8, "lon": 149.1, "production":  80000, "state": "New South Wales",   "note": "Riverina, NSW" },
+          { "crop": "Avocados",    "lat": -17.1, "lon": 145.5, "production":  60000, "state": "Queensland",        "note": "Atherton Tablelands, QLD" },
+          { "crop": "Avocados",    "lat": -24.9, "lon": 152.3, "production":  50000, "state": "Queensland",        "note": "Bundaberg, QLD" },
+          { "crop": "Vegetables",  "lat": -27.2, "lon": 152.8, "production": 300000, "state": "Queensland",        "note": "South-east QLD" },
+          { "crop": "Vegetables",  "lat": -37.2, "lon": 144.8, "production": 400000, "state": "Victoria",          "note": "Goulburn Valley, VIC" },
+          { "crop": "Vegetables",  "lat": -34.5, "lon": 138.3, "production": 150000, "state": "South Australia",   "note": "Adelaide Plains, SA" },
+          { "crop": "Vegetables",  "lat": -31.9, "lon": 115.9, "production": 120000, "state": "Western Australia", "note": "Swan Valley, WA" }
         ]
       },
       "params": [
@@ -43,19 +43,18 @@
           "bind": "legend"
         },
         {
-          "name": "minProd",
-          "value": 0,
+          "name": "selectedCrop",
+          "value": "All",
           "bind": {
-            "input": "range",
-            "min": 0,
-            "max": 400000,
-            "step": 10000,
-            "name": "Min. production (tonnes): "
+            "input": "select",
+            "options": ["All", "Apples", "Almonds", "Wine grapes", "Avocados", "Vegetables"],
+            "labels": ["All crops", "Apples", "Almonds", "Wine grapes", "Avocados", "Vegetables"],
+            "name": "Filter by crop: "
           }
         }
       ],
       "transform": [
-        {"filter": "datum.production >= minProd"}
+        { "filter": "selectedCrop == 'All' || datum.crop == selectedCrop" }
       ],
       "mark": {
         "type": "circle",
@@ -82,7 +81,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Apples", "Almonds", "Wine grapes", "Avocados", "Vegetables"],
-            "range": ["#c0392b", "#c8a030", "#8e44ad", "#4a8c3f", "#27ae60"]
+            "range": ["#c0392b", "#c8a030", "#8e44ad", "#4a8c3f", "#2ecc71"]
           },
           "legend": {
             "title": "Crop",
